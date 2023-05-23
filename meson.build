@@ -1,7 +1,10 @@
-cxx = meson.get_compiler('c')
+project('agl-service-helloworld',
+        'cpp',
+        license : 'Apache-2.0',
+        default_options : ['c_std=c17', 'cpp_std=c++17'])
 
-src =  ['main.c']
-executable('agl-service-helloworld',
-           src,
-           install: true,
-           install_dir : get_option('sbindir'))
+systemd_dep = dependency('systemd')
+
+subdir('src')
+subdir('systemd')
+
